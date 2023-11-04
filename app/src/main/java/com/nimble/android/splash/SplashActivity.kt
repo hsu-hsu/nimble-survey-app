@@ -1,7 +1,8 @@
-package com.nimble.android
+package com.nimble.android.splash
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import com.nimble.android.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
