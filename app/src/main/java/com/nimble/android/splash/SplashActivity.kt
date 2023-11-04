@@ -1,12 +1,15 @@
 package com.nimble.android.splash
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import com.nimble.android.R
+import androidx.appcompat.app.AppCompatActivity
+import com.nimble.android.MainActivity
 
-class MainActivity : ComponentActivity() {
+
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        finish()
     }
 }
