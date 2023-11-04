@@ -7,4 +7,5 @@
     <dimen name="padding">16dp</dimen>
     <dimen name="shoe_divider_width">320dp</dimen>
     <dimen name="small_margin">8dp</dimen>
+    <dimen name="large_margin">32dp</dimen>
 </resources>

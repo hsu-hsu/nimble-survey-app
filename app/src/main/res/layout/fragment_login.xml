@@ -13,7 +13,16 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo"
+        android:layout_marginBottom="@dimen/large_margin"/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/email_edit"-->
+<!--        style="@style/ViewMargin"-->
+<!--        android:hint="@string/enter_your_email"-->
+<!--        android:inputType="text"-->
+<!--        android:textAlignment="viewStart"-->
+<!--        android:background="@color/edittext_bg_color"/>-->
 
 </LinearLayout>
 </layout>
