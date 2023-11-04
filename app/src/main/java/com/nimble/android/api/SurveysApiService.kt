@@ -12,5 +12,5 @@ interface SurveysApiService {
     @POST(Constants.TOKEN_PATH)
     suspend fun loginUser(
         @Body payload: TokenPayload,
-    ): Response<TokenResponse>
+    ): TokenResponse
 }
