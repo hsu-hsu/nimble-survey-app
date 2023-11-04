@@ -18,4 +18,6 @@ object SurveysApi {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .build()
+
+    val retrofitService : SurveysApiService by lazy { retrofit.create(SurveysApiService::class.java) }
 }
