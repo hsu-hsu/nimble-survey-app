@@ -1,3 +1,7 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+val client_id: String = gradleLocalProperties(rootDir).getProperty("CLIENT_ID")
+val client_secret: String = gradleLocalProperties(rootDir).getProperty("CLIENT_SECRET")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,6 +22,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "client_id", client_id)
+        buildConfigField("String", "client_secret", client_secret)
     }
 
     buildTypes {
@@ -31,6 +37,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
