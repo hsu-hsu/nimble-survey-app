@@ -20,6 +20,10 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     val authToken: LiveData<TokenResponse>
         get() = _authToken
 
+    private val _navigateToHomeFragment = MutableLiveData<TokenResponse?>()
+    val navigateToHomeFragment
+        get() = _navigateToHomeFragment
+
 
     fun onLoginButtonClick() {
         getAuthToken()
@@ -31,9 +35,14 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
                 _authToken.value = repository.getAuthToken(TokenPayload("password", "your_email@example.com",
                     "12345678", BuildConfig.client_id, BuildConfig.client_secret))
                 Log.i("token", "here is token"+ _authToken.value!!.data.type)
+                _navigateToHomeFragment.value = _authToken.value
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun onHomeFragmentNavigate() {
+        _navigateToHomeFragment.value = null
     }
 }

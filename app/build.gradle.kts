@@ -5,6 +5,8 @@ val client_secret: String = gradleLocalProperties(rootDir).getProperty("CLIENT_S
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("androidx.navigation.safeargs")
+    id ("kotlin-parcelize")
 }
 
 android {
