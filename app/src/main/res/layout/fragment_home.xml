@@ -27,6 +27,12 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/home_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:listitem="@layout/surveys_card_item"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
