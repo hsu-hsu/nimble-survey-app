@@ -1,7 +1,8 @@
 package com.nimble.android.api
 
 import com.nimble.android.api.payloads.TokenPayload
-import com.nimble.android.api.response.TokenResponse
+import com.nimble.android.api.response.survey.SurveysResponse
+import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.utils.Constants
 import retrofit2.http.Body
 import retrofit2.http.GET

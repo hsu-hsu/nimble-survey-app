@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nimble.android.BuildConfig
 import com.nimble.android.api.payloads.TokenPayload
-import com.nimble.android.api.response.TokenResponse
+import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.TokenRepository
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.nimble.android.api.response
+package com.nimble.android.api.response.token
 
 import com.squareup.moshi.Json
 

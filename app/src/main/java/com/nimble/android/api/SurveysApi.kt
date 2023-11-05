@@ -1,7 +1,7 @@
 package com.nimble.android.api
 
 import com.nimble.android.api.payloads.TokenPayload
-import com.nimble.android.api.response.TokenResponse
+import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.utils.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

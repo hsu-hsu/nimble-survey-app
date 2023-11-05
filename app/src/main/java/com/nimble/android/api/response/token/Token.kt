@@ -1,7 +1,8 @@
-package com.nimble.android.api.response
+package com.nimble.android.api.response.token
 
 import com.squareup.moshi.Json
 
 data class Token(@Json(name = "id") val id: Int,
                  @Json(name = "type") val type: String,
-                 @Json(name = "attributes") val attributes: TokenAttributes)
+                 @Json(name = "attributes") val attributes: TokenAttributes
+)
