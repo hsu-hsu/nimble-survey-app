@@ -7,11 +7,11 @@ import kotlinx.coroutines.withContext
 
 class SurveyRepository {
 
-    suspend fun getSurveysList(token: String, page: Int, size: Int): Result<SurveysResponse> {
+    suspend fun getSurveysList(token: String, page: Int, size: Int): SurveysResponse {
         lateinit var survey: SurveysResponse
         withContext(Dispatchers.IO) {
             survey = SurveysApi.getSurveysList(token, page, size)
         }
-        return Result.success(survey)
+        return survey
     }
 }

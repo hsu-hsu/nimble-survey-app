@@ -6,4 +6,6 @@ object Constants {
     const val TOKEN_PATH = "oauth/token"
     const val SURVEY_LIST_PATH = "surveys"
 
+    const val PAGE = 1
+    const val SIZE = 5
 }
