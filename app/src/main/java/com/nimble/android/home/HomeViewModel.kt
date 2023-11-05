@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.nimble.android.BuildConfig
 import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.survey.SurveysResponse
+import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.SurveyRepository
 import com.nimble.android.utils.Constants
 import kotlinx.coroutines.launch
@@ -21,15 +22,20 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     val survey: LiveData<SurveysResponse>
         get() = _surveys
 
-    init {
-        fetchSurveysList("aaa")
+    private val _token = MutableLiveData<TokenResponse>()
+    val token: LiveData<TokenResponse>
+        get() = _token
+
+    fun getTokenFromLogin(token: TokenResponse) {
+        _token.value = token
+        fetchSurveysList("Bearer " + token.data.attributes.accessToken)
     }
 
     private fun fetchSurveysList(token: String) {
         viewModelScope.launch {
             try {
                 _surveys.value = repository.getSurveysList(token, Constants.PAGE, Constants.SIZE)
-                Log.i("token", "here is token"+ _surveys.value!!.data.type)
+                Log.i("survey", "here is survey"+ _surveys.value!!.data[0].type)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

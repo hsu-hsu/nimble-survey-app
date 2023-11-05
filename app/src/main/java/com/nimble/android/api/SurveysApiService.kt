@@ -8,6 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SurveysApiService {
@@ -17,6 +18,6 @@ interface SurveysApiService {
 
     @GET(Constants.SURVEY_LIST_PATH)
     suspend fun getSurveysList(@Header("Authorization") token: String,
-                               @Query("page[number]") page: Int,
-                               @Query("page[size") size: Int) : SurveysResponse
+                               @Query("number") page: Int,
+                               @Query("size") size: Int) : SurveysResponse
 }

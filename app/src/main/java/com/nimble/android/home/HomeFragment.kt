@@ -28,6 +28,8 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProviders.of(this, viewModelFactory)[HomeViewModel::class.java]
         binding.homeViewModel = homeViewModel
         binding.shimmerLayout.startShimmer()
+        val token = HomeFragmentArgs.fromBundle(requireArguments()).token
+        homeViewModel.getTokenFromLogin(token)
         return binding.root
     }
 }
