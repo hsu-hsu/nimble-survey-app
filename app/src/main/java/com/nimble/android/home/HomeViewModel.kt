@@ -34,7 +34,6 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
                 e.printStackTrace()
             }
 
-            }
         }
     }
 }
