@@ -30,6 +30,18 @@ class HomeFragment : Fragment() {
         binding.shimmerLayout.startShimmer()
         val token = HomeFragmentArgs.fromBundle(requireArguments()).token
         homeViewModel.getTokenFromLogin(token)
+        val adapter = SurveyListAdapter(SurveyListAdapter.OnClickListener { surveyId ->
+
+        })
+        homeViewModel.survey.observe(viewLifecycleOwner, { surveys->
+            surveys?.let {
+                binding.shimmerLayout.stopShimmer()
+                adapter.submitList(surveys.data)
+                binding.homePager.adapter = adapter
+                binding.homePager.visibility = View.VISIBLE
+            }
+
+        })
         return binding.root
     }
 }
