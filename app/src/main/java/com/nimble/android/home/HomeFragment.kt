@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
                 binding.homePager.adapter = adapter
                 binding.homePager.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
+                binding.dotsIndicator.attachTo(binding.homePager)
             }
 
         })
