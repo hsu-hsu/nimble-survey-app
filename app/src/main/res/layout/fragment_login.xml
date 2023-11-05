@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.nimble.android.login.LoginViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/login_background"
+        tools:context=".login.LoginFragment">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_marginTop="-32dp"
+            android:layout_marginBottom="@dimen/large_margin"/>
+
+        <EditText
+            android:id="@+id/email_edit"
+            style="@style/ViewMargin"
+            android:hint="@string/enter_your_email"
+            android:inputType="text"
+            android:textAlignment="viewStart"
+            android:background="@drawable/edit_text_background"
+            android:paddingLeft="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_text_color"/>
+
+        <EditText
+            android:id="@+id/password_edit"
+            style="@style/ViewMargin"
+            android:hint="@string/enter_your_password"
+            android:inputType="text"
+            android:textAlignment="viewStart"
+            android:background="@drawable/edit_text_background"
+            android:paddingLeft="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_text_color"/>
+
+        <Button
+            android:id="@+id/login_button"
+            style="@style/ViewMargin"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_button_background"
+            android:text="@string/Login"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:onClick="@{() -> loginViewModel.onLoginButtonClick()}"/>
+
+</LinearLayout>
+</layout>
