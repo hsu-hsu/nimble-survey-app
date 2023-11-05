@@ -81,6 +81,9 @@ dependencies {
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
+
+
     // Retrofit with Moshi Converter
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
