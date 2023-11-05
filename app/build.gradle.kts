@@ -1,4 +1,6 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 val client_id: String = gradleLocalProperties(rootDir).getProperty("CLIENT_ID")
 val client_secret: String = gradleLocalProperties(rootDir).getProperty("CLIENT_SECRET")
 
@@ -7,6 +9,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("androidx.navigation.safeargs")
     id ("kotlin-parcelize")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -47,6 +50,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs> {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
     buildFeatures {
         compose = true
@@ -94,6 +102,11 @@ dependencies {
     // Moshi
     implementation("com.squareup.moshi:moshi:1.9.3")
     implementation("com.squareup.moshi:moshi-kotlin:1.9.3")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

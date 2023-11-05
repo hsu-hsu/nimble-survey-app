@@ -39,7 +39,7 @@ class SurveyListAdapter(private val clickListener: OnClickListener):
         : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Survey, clickListener: OnClickListener) {
-            binding.survery = item
+            binding.survey = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }

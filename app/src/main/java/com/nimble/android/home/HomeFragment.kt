@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
                 adapter.submitList(surveys.data)
                 binding.homePager.adapter = adapter
                 binding.homePager.visibility = View.VISIBLE
+                binding.shimmerLayout.visibility = View.GONE
             }
 
         })
