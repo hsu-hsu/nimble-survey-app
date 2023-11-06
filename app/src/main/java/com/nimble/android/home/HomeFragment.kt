@@ -46,9 +46,13 @@ class HomeFragment : Fragment() {
 
         }
 
-
         homeViewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment2())
+//            homeViewModel.onDetailFragmentNavigate()
+            it?.let {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(it))
+                homeViewModel.onDetailFragmentNavigate()
+            }
         }
         return binding.root
     }

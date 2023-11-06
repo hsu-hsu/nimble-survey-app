@@ -29,12 +29,16 @@ class LoginFragment : Fragment() {
         val loginViewModel = ViewModelProviders.of(this, viewModelFactory)[LoginViewModel::class.java]
         binding.loginViewModel = loginViewModel
 
-        loginViewModel.navigateToHomeFragment.observe(viewLifecycleOwner, { data ->
+        loginViewModel.navigateToHomeFragment.observe(viewLifecycleOwner) { data ->
             data?.let {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment(data))
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToHomeFragment(
+                        data
+                    )
+                )
                 loginViewModel.onHomeFragmentNavigate()
             }
-        })
+        }
         return binding.root
     }
 
