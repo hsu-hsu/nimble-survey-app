@@ -5,9 +5,11 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.nimble.android.BuildConfig
 import com.nimble.android.api.payloads.TokenPayload
+import com.nimble.android.api.response.survey.Survey
 import com.nimble.android.api.response.survey.SurveysResponse
 import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.SurveyRepository
@@ -26,6 +28,10 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     val token: LiveData<TokenResponse>
         get() = _token
 
+    private val _navigateToDetailFragment = MutableLiveData<Survey?>()
+    val navigateToDetailFragment
+        get() = _navigateToDetailFragment
+
     fun getTokenFromLogin(token: TokenResponse) {
         _token.value = token
         fetchSurveysList("Bearer " + token.data.attributes.accessToken)
@@ -41,5 +47,13 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
             }
 
         }
+    }
+
+    fun onSurveyItemClick(data: Survey) {
+        _navigateToDetailFragment.value = data
+    }
+
+    fun onDetailFragmentNavigate() {
+        _navigateToDetailFragment.value = null
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.nimble.android.R
 import com.nimble.android.databinding.FragmentHomeBinding
 import com.nimble.android.databinding.FragmentLoginBinding
@@ -30,10 +31,10 @@ class HomeFragment : Fragment() {
         binding.shimmerLayout.startShimmer()
         val token = HomeFragmentArgs.fromBundle(requireArguments()).token
         homeViewModel.getTokenFromLogin(token)
-        val adapter = SurveyListAdapter(SurveyListAdapter.OnClickListener { surveyId ->
-
+        val adapter = SurveyListAdapter(SurveyListAdapter.OnClickListener { survey ->
+            homeViewModel.onSurveyItemClick(survey)
         })
-        homeViewModel.survey.observe(viewLifecycleOwner, { surveys->
+        homeViewModel.survey.observe(viewLifecycleOwner) { surveys ->
             surveys?.let {
                 binding.shimmerLayout.stopShimmer()
                 adapter.submitList(surveys.data)
@@ -43,7 +44,12 @@ class HomeFragment : Fragment() {
                 binding.dotsIndicator.attachTo(binding.homePager)
             }
 
-        })
+        }
+
+
+        homeViewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
+        }
         return binding.root
     }
 }

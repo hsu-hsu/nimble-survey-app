@@ -22,5 +22,13 @@
         <argument
             android:name="token"
             app:argType="com.nimble.android.api.response.token.TokenResponse"/>
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.nimble.android.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
