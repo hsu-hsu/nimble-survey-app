@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.nimble.android.R
 import com.nimble.android.databinding.FragmentDetailBinding
 

@@ -5,16 +5,18 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nimble.android.BuildConfig
 import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.TokenRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(application: Application): AndroidViewModel(application) {
-
-    private val repository = TokenRepository()
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val repository: TokenRepository): ViewModel() {
 
     private val _authToken = MutableLiveData<TokenResponse>()
     val authToken: LiveData<TokenResponse>
@@ -25,6 +27,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
         get() = _navigateToHomeFragment
 
 
+    @Inject
     fun onLoginButtonClick() {
         getAuthToken()
     }
