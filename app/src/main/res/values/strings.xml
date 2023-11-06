@@ -3,4 +3,5 @@
     <string name="enter_your_email">Email</string>
     <string name="enter_your_password">Password</string>
     <string name="Login">Log in</string>
+    <string name="hello_detail_fragment">This is survey detail fragment.</string>
 </resources>

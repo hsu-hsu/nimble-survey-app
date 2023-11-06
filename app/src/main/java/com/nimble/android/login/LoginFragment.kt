@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.nimble.android.BuildConfig
 import com.nimble.android.R
 import com.nimble.android.databinding.FragmentLoginBinding
@@ -27,6 +28,17 @@ class LoginFragment : Fragment() {
         val viewModelFactory = LoginViewModelFactory(application)
         val loginViewModel = ViewModelProviders.of(this, viewModelFactory)[LoginViewModel::class.java]
         binding.loginViewModel = loginViewModel
+
+        loginViewModel.navigateToHomeFragment.observe(viewLifecycleOwner) { data ->
+            data?.let {
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToHomeFragment(
+                        data
+                    )
+                )
+                loginViewModel.onHomeFragmentNavigate()
+            }
+        }
         return binding.root
     }
 

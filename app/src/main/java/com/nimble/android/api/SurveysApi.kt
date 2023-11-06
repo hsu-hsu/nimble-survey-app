@@ -1,7 +1,8 @@
 package com.nimble.android.api
 
 import com.nimble.android.api.payloads.TokenPayload
-import com.nimble.android.api.response.TokenResponse
+import com.nimble.android.api.response.survey.SurveysResponse
+import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.utils.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -25,6 +26,11 @@ object SurveysApi {
 
     suspend fun getAuthToken(payload: TokenPayload) : TokenResponse {
         val response = retrofitService.loginUser(payload)
+        return response
+    }
+
+    suspend fun getSurveysList(token: String, page: Int, size: Int): SurveysResponse {
+        val response = retrofitService.getSurveysList(token, page, size)
         return response
     }
 }
