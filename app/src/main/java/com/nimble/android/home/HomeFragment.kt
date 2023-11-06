@@ -10,9 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.nimble.android.R
 import com.nimble.android.databinding.FragmentHomeBinding
-import com.nimble.android.databinding.FragmentLoginBinding
-import com.nimble.android.login.LoginViewModel
-import com.nimble.android.login.LoginViewModelFactory
 
 class HomeFragment : Fragment() {
 
