@@ -1,6 +1,5 @@
 package com.nimble.android.repository
 
-import com.nimble.android.api.SurveysApi
 import com.nimble.android.api.SurveysApiService
 import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.token.TokenResponse

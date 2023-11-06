@@ -18,8 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: TokenRepository): ViewModel() {
 
-    //private val repository = TokenRepository()
-
     private val _authToken = MutableLiveData<TokenResponse>()
     val authToken: LiveData<TokenResponse>
         get() = _authToken

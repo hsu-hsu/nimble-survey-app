@@ -1,20 +1,14 @@
 package com.nimble.android.home
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
-import com.nimble.android.BuildConfig
-import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.survey.Survey
 import com.nimble.android.api.response.survey.SurveysResponse
 import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.SurveyRepository
-import com.nimble.android.repository.TokenRepository
 import com.nimble.android.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -22,8 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: SurveyRepository): ViewModel() {
-
-    //private val repository = SurveyRepository()
 
     private val _surveys = MutableLiveData<SurveysResponse>()
     val survey: LiveData<SurveysResponse>
