@@ -27,7 +27,6 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
         get() = _navigateToHomeFragment
 
 
-    @Inject
     fun onLoginButtonClick() {
         getAuthToken()
     }
