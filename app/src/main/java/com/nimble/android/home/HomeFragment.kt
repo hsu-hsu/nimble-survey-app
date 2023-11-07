@@ -52,10 +52,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        adapter.notifyDataSetChanged()
-        binding.homePager.adapter = adapter
+        override fun onResume() {
+            super.onResume()
+            adapter.notifyDataSetChanged()
+            binding.homePager.adapter = adapter
     }
 
     private fun initializeAdapter() {
