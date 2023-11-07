@@ -20,9 +20,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
+        initializeViewModel()
         fetchData()
         initializeAdapter()
         observeViewModel()
+    }
+
+    private fun initializeViewModel() {
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.homeViewModel = viewModel
     }
 
     private fun observeViewModel() {
@@ -44,6 +50,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.onDetailFragmentNavigate()
             }
         }
+    }
+
+        override fun onResume() {
+            super.onResume()
+            adapter.notifyDataSetChanged()
+            binding.homePager.adapter = adapter
     }
 
     private fun initializeAdapter() {

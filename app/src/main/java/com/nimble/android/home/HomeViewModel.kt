@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: SurveyRepository): ViewModel() {
 
-    private val _surveys = MutableLiveData<SurveysResponse>()
-    val survey: LiveData<SurveysResponse>
+    private val _surveys = MutableLiveData<SurveysResponse?>()
+    val survey: LiveData<SurveysResponse?>
         get() = _surveys
 
     private val _token = MutableLiveData<TokenResponse>()
@@ -52,5 +52,6 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
 
     fun onDetailFragmentNavigate() {
         _navigateToDetailFragment.value = null
+        _surveys.value = null
     }
 }
