@@ -52,6 +52,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+        binding.homePager.adapter = adapter
+    }
+
     private fun initializeAdapter() {
         adapter = SurveyListAdapter(SurveyListAdapter.OnClickListener { survey ->
             viewModel.onSurveyItemClick(survey)
