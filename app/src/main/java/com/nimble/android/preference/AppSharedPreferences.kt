@@ -33,4 +33,13 @@ object AppSharedPreferences {
     fun setExpireIn(expireIn: Long) {
         sharedPreferences?.edit()?.putLong(EXPIRE_IN, expireIn)?.apply()
     }
+
+    fun deleteToken() {
+        sharedPreferences?.edit()?.apply {
+            remove(ACCESS_TOKEN_KEY)
+            remove(REFRESH_TOKEN_KEY)
+            remove(ACCESS_TOKEN_KEY)
+            apply()
+        }
+    }
 }

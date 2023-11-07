@@ -15,6 +15,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import org.json.JSONObject
 import retrofit2.Invocation
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -42,8 +43,8 @@ class AuthInterceptor @Inject constructor() : Interceptor  {
         } else {
             val tokenRefreshResponse = chain.refreshToken()
             interceptedRequest = if (tokenRefreshResponse.isSuccessful) {
-                val newToken = mapToken(tokenRefreshResponse) // 3
-                if (newToken != null) { // 4
+                val newToken = mapToken(tokenRefreshResponse)
+                if (newToken != null) {
                     storeNewToken(newToken)
                     chain.createAuthenticatedRequest(newToken.accessToken!!)
                 } else {
@@ -62,16 +63,19 @@ class AuthInterceptor @Inject constructor() : Interceptor  {
         AppSharedPreferences.setExpireIn((System.currentTimeMillis() + newToken.expireIn *1000))
     }
 
-    private fun mapToken(tokenRefreshResponse: Response): TokenAttributes{
-        val stringJson = tokenRefreshResponse.body.toString()
-        val jsonObject = JSONObject(stringJson)
-        val data = jsonObject.getJSONObject("data")
-        val attributes = TokenAttributes(jsonObject.getJSONObject("data").getJSONObject("attributes").getString("access_token"),
-            jsonObject.getJSONObject("data").getJSONObject("attributes").getString("token_type"),
-            jsonObject.getJSONObject("data").getJSONObject("attributes").getInt("expires_in"),
-            jsonObject.getJSONObject("data").getJSONObject("attributes").getString("refresh_token"),
-            jsonObject.getJSONObject("data").getJSONObject("attributes").getInt("created_at"))
-        return attributes
+    private fun mapToken(tokenRefreshResponse: Response): TokenAttributes?{
+        return try {
+            val stringJson = tokenRefreshResponse.body.toString()
+            val jsonObject = JSONObject(stringJson)
+            val attributes = TokenAttributes(jsonObject.getJSONObject("data").getJSONObject("attributes").getString("access_token"),
+                jsonObject.getJSONObject("data").getJSONObject("attributes").getString("token_type"),
+                jsonObject.getJSONObject("data").getJSONObject("attributes").getInt("expires_in"),
+                jsonObject.getJSONObject("data").getJSONObject("attributes").getString("refresh_token"),
+                jsonObject.getJSONObject("data").getJSONObject("attributes").getInt("created_at"))
+            attributes
+        }catch (e: Exception) {
+            null
+        }
     }
 }
 
@@ -100,8 +104,8 @@ private fun Interceptor.Chain.proceedDeletingTokenIfUnauthorized(request: Reques
     val response = proceed(request)
 
     if (response.code == UNAUTHORIZED) {
-//        Timber.d("UNAUTHORIZED: 401")
-//        runBlocking { preferences.deleteTokenInfo() }
+        Timber.d("UNAUTHORIZED: 401")
+        AppSharedPreferences.deleteToken()
     }
 
     return response
