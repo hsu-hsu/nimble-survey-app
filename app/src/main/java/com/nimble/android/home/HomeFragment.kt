@@ -20,9 +20,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
+        initializeViewModel()
         fetchData()
         initializeAdapter()
         observeViewModel()
+    }
+
+    private fun initializeViewModel() {
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.homeViewModel = viewModel
     }
 
     private fun observeViewModel() {
