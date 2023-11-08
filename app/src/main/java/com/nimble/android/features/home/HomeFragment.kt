@@ -63,7 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {
             it?.let {
                 findNavController().navigate(
-                    com.nimble.android.home.HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
                         it
                     )
                 )

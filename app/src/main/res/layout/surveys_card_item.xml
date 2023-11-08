@@ -9,7 +9,7 @@
 
         <variable
             name="clickListener"
-            type="com.nimble.android.features.home.SurveyListAdapter" />
+            type="com.nimble.android.features.home.SurveyListAdapter.OnClickListener" />
     </data>
     <FrameLayout
         android:layout_width="match_parent"

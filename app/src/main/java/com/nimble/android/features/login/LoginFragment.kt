@@ -33,7 +33,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             if(it != null) {
                 viewModel.onHomeFragmentNavigate()
                 findNavController().navigate(
-                    com.nimble.android.login.LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                 )
                 binding.loadingIndicator.visibility = View.GONE
             }
