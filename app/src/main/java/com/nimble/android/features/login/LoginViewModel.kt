@@ -39,9 +39,8 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     private fun getAuthToken() {
         viewModelScope.launch {
             try {
-                _authToken.value = repository.getAuthToken(TokenPayload("password", "your_email@example.com",
-                    "12345678", BuildConfig.client_id, BuildConfig.client_secret))
-                //Log.i("token", "here is token"+ _authToken.value!!.data.type)
+                _authToken.value = repository.getAuthToken(TokenPayload("password", "hsuyethin@gmail.com",
+                    "hsuyeethin", BuildConfig.client_id, BuildConfig.client_secret))
                 _navigateToHomeFragment.value = _authToken.value
             } catch (e: Exception) {
                 e.printStackTrace()

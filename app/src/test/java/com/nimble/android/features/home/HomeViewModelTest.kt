@@ -1,10 +1,7 @@
 package com.nimble.android.features.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nimble.android.BuildConfig
-import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.survey.SurveysResponse
-import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.SurveyRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -17,7 +14,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 
