@@ -53,6 +53,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.shimmerLayout.stopShimmer()
                 adapter.submitList(surveys.data)
                 binding.homePager.visibility = View.VISIBLE
+                binding.continueFab.visibility = View.VISIBLE
+                binding.dotsIndicator.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
             }
 
@@ -66,15 +68,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-        override fun onResume() {
-            super.onResume()
-            adapter.notifyDataSetChanged()
-            binding.homePager.adapter = adapter
-    }
-
     private fun fetchData() {
         binding.shimmerLayout.startShimmer()
-        //val token = HomeFragmentArgs.fromBundle(requireArguments()).token
         viewModel.getTokenFromLogin()
     }
 }
