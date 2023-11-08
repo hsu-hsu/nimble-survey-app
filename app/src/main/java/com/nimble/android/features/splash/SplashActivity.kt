@@ -1,4 +1,4 @@
-package com.nimble.android.splash
+package com.nimble.android.features.splash
 
 import android.content.Intent
 import android.os.Bundle

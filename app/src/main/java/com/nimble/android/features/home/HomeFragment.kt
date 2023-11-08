@@ -1,4 +1,4 @@
-package com.nimble.android.home
+package com.nimble.android.features.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -62,7 +62,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {
             it?.let {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(it))
+                findNavController().navigate(
+                    com.nimble.android.home.HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        it
+                    )
+                )
                 viewModel.onDetailFragmentNavigate()
             }
         }

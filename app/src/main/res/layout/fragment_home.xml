@@ -5,13 +5,13 @@
     <data>
         <variable
             name="homeViewModel"
-            type="com.nimble.android.home.HomeViewModel" />
+            type="com.nimble.android.features.home.HomeViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.HomeFragment">
+        tools:context=".features.home.HomeFragment">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_layout"

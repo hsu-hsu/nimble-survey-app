@@ -6,7 +6,7 @@
     <data>
         <variable
             name="loginViewModel"
-            type="com.nimble.android.login.LoginViewModel" />
+            type="com.nimble.android.features.login.LoginViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:background="@drawable/login_background"
-        tools:context=".login.LoginFragment">
+        tools:context=".features.login.LoginFragment">
 
         <ImageView
             android:layout_width="wrap_content"

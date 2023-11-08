@@ -1,4 +1,4 @@
-package com.nimble.android.detail
+package com.nimble.android.features.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

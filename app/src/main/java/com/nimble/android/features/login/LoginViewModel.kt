@@ -1,4 +1,4 @@
-package com.nimble.android.login
+package com.nimble.android.features.login
 
 import android.app.Application
 import android.util.Log
