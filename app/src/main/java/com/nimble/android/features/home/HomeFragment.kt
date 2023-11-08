@@ -1,4 +1,4 @@
-package com.nimble.android.home
+package com.nimble.android.features.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -53,6 +53,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.shimmerLayout.stopShimmer()
                 adapter.submitList(surveys.data)
                 binding.homePager.visibility = View.VISIBLE
+                binding.continueFab.visibility = View.VISIBLE
+                binding.dotsIndicator.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
             }
 
@@ -60,21 +62,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {
             it?.let {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(it))
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        it
+                    )
+                )
                 viewModel.onDetailFragmentNavigate()
             }
         }
     }
 
-        override fun onResume() {
-            super.onResume()
-            adapter.notifyDataSetChanged()
-            binding.homePager.adapter = adapter
-    }
-
     private fun fetchData() {
         binding.shimmerLayout.startShimmer()
-        //val token = HomeFragmentArgs.fromBundle(requireArguments()).token
         viewModel.getTokenFromLogin()
     }
 }

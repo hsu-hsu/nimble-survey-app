@@ -1,4 +1,4 @@
-package com.nimble.android.home
+package com.nimble.android.features.home
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

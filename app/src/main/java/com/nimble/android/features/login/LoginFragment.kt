@@ -1,4 +1,4 @@
-package com.nimble.android.login
+package com.nimble.android.features.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,6 +35,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 findNavController().navigate(
                     LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                 )
+                binding.loadingIndicator.visibility = View.GONE
+            }
+        }
+
+        viewModel.showLoading.observe(viewLifecycleOwner) {
+            if(it == true) {
+                binding.loadingIndicator.visibility = View.VISIBLE
+            } else {
+                binding.loadingIndicator.visibility = View.GONE
             }
         }
     }
