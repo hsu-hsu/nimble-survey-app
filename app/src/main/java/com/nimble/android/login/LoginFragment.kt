@@ -29,14 +29,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun observeViewModel() {
-        viewModel.navigateToHomeFragment.observe(viewLifecycleOwner) { data ->
-            data?.let {
-                findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToHomeFragment(
-                        data
-                    )
-                )
+        viewModel.navigateToHomeFragment.observe(viewLifecycleOwner) {
+            if(it != null) {
                 viewModel.onHomeFragmentNavigate()
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                )
             }
         }
     }

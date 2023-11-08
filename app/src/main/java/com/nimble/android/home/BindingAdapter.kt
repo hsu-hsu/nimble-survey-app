@@ -6,13 +6,9 @@ import com.bumptech.glide.Glide
 import com.nimble.android.api.response.survey.Survey
 
 @BindingAdapter("backgroundImage")
-fun bindImagePictureOfDay(imageView: ImageView, data: Survey) {
-
-    data?.let {
-
+fun bindBackgroundImage(imageView: ImageView, imageUrl: String) {
             Glide.with(imageView.context)
-                .load(it.attributes.coverImageUrl)
+                .load(imageUrl)
                 .into(imageView)
 
-    }
 }

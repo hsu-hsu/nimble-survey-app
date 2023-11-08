@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/loginFragment">
+    tools:ignore="InvalidNavigation">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -21,9 +21,6 @@
         android:name="com.nimble.android.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-        <argument
-            android:name="token"
-            app:argType="com.nimble.android.api.response.token.TokenResponse"/>
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

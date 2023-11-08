@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
+            app:srcCompat="@drawable/app_logo"
             android:layout_marginTop="-32dp"
             android:layout_marginBottom="@dimen/large_margin"/>
 
@@ -29,10 +29,10 @@
             android:id="@+id/email_edit"
             style="@style/ViewMargin"
             android:hint="@string/enter_your_email"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:textAlignment="viewStart"
             android:background="@drawable/edit_text_background"
-            android:paddingLeft="12dp"
+            android:paddingStart="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint_text_color"/>
 
@@ -40,10 +40,10 @@
             android:id="@+id/password_edit"
             style="@style/ViewMargin"
             android:hint="@string/enter_your_password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textAlignment="viewStart"
             android:background="@drawable/edit_text_background"
-            android:paddingLeft="12dp"
+            android:paddingStart="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint_text_color"/>
 
