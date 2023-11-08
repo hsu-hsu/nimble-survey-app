@@ -29,16 +29,14 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
     val navigateToDetailFragment
         get() = _navigateToDetailFragment
 
-    fun getTokenFromLogin(token: TokenResponse) {
-        _token.value = token
-        fetchSurveysList("Bearer " + token.data.attributes.accessToken)
+    fun getTokenFromLogin() {
+        fetchSurveysList()
     }
 
-    private fun fetchSurveysList(token: String) {
+    private fun fetchSurveysList() {
         viewModelScope.launch {
             try {
-                _surveys.value = repository.getSurveysList(token, Constants.PAGE, Constants.SIZE)
-                Log.i("survey", "here is survey"+ _surveys.value!!.data[0].type)
+                _surveys.value = repository.getSurveysList(Constants.PAGE, Constants.SIZE)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

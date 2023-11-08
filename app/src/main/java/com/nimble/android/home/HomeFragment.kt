@@ -74,7 +74,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun fetchData() {
         binding.shimmerLayout.startShimmer()
-        val token = HomeFragmentArgs.fromBundle(requireArguments()).token
-        viewModel.getTokenFromLogin(token)
+        //val token = HomeFragmentArgs.fromBundle(requireArguments()).token
+        viewModel.getTokenFromLogin()
     }
 }

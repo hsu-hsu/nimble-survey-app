@@ -10,10 +10,10 @@ import javax.inject.Singleton
 @Singleton
 class SurveyRepository @Inject constructor(private val webservice: SurveysApiService){
 
-    suspend fun getSurveysList(token: String, page: Int, size: Int): SurveysResponse {
+    suspend fun getSurveysList(page: Int, size: Int): SurveysResponse {
         lateinit var survey: SurveysResponse
         withContext(Dispatchers.IO) {
-            survey = webservice.getSurveysList(token, page, size)
+            survey = webservice.getSurveysList(page, size)
         }
         return survey
     }

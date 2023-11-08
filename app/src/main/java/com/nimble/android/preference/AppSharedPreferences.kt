@@ -12,7 +12,7 @@ object AppSharedPreferences {
     const val REFRESH_TOKEN_KEY = "refresh_token"
     const val EXPIRE_IN = "expire_in"
 
-    fun setup(context: Context) {
+    fun init(context: Context) {
         sharedPreferences = context.getSharedPreferences("surveyList.sharedprefs", MODE_PRIVATE)
     }
 
