@@ -26,8 +26,13 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     val navigateToHomeFragment
         get() = _navigateToHomeFragment
 
+    private val _showLoading = MutableLiveData<Boolean?>()
+    val showLoading
+        get() = _showLoading
+
 
     fun onLoginButtonClick() {
+        _showLoading.value = true
         getAuthToken()
     }
 
@@ -46,5 +51,6 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
 
     fun onHomeFragmentNavigate() {
         _navigateToHomeFragment.value = null
+        _showLoading.value = false
     }
 }
