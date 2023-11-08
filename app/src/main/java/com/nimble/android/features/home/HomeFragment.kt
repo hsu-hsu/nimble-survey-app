@@ -74,6 +74,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun fetchData() {
         binding.shimmerLayout.startShimmer()
-        viewModel.getTokenFromLogin()
+        viewModel.fetchSurveysList()
     }
 }

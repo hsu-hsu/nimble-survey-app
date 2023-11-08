@@ -29,11 +29,7 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
     val navigateToDetailFragment
         get() = _navigateToDetailFragment
 
-    fun getTokenFromLogin() {
-        fetchSurveysList()
-    }
-
-    private fun fetchSurveysList() {
+    fun fetchSurveysList() {
         viewModelScope.launch {
             try {
                 _surveys.value = repository.getSurveysList(Constants.PAGE, Constants.SIZE)
