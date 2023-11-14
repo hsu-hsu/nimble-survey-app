@@ -7,21 +7,24 @@ import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.preference.AppSharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class TokenRepository @Inject constructor(private val webservice: SurveysApiService) {
 
-    suspend fun getAuthToken(payload: TokenPayload): TokenResponse {
-        lateinit var token: TokenResponse
+    suspend fun getAuthToken(payload: TokenPayload): Response<TokenResponse> {
+        lateinit var token: Response<TokenResponse>
         withContext(Dispatchers.IO) {
             token = webservice.loginUser(payload)
         }
-
-        AppSharedPreferences.setAccessToken(token.data.attributes.accessToken)
-        AppSharedPreferences.setRefreshToken(token.data.attributes.refreshToken)
-        AppSharedPreferences.setExpireIn(System.currentTimeMillis() + token.data.attributes.expireIn * 1000)
+        if(token.isSuccessful) {
+            var responseToken = token.body()!!
+            AppSharedPreferences.setAccessToken(responseToken.data.attributes.accessToken)
+            AppSharedPreferences.setRefreshToken(responseToken.data.attributes.refreshToken)
+            AppSharedPreferences.setExpireIn(System.currentTimeMillis() + responseToken.data.attributes.expireIn * 1000)
+        }
         return token
     }
 }

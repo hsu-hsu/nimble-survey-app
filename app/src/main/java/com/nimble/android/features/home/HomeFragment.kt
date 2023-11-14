@@ -3,6 +3,7 @@ package com.nimble.android.features.home
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -75,6 +76,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.shimmerLayout.visibility = View.GONE
             }
 
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                binding.shimmerLayout.stopShimmer()
+                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+            }
         }
 
         viewModel.navigateToDetailFragment.observe(viewLifecycleOwner) {

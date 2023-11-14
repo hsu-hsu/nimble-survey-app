@@ -12,6 +12,7 @@ import com.nimble.android.repository.SurveyRepository
 import com.nimble.android.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,14 +30,25 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
     val navigateToDetailFragment
         get() = _navigateToDetailFragment
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
     private var currentPage = Constants.PAGE
 
     fun fetchSurveysList() {
         viewModelScope.launch {
             try {
-                _surveys.value = repository.getSurveysList(currentPage, Constants.SIZE)
+                val response = repository.getSurveysList(currentPage, Constants.SIZE)
+                if(response.isSuccessful) {
+                    _surveys.value = response.body()
+                }else{
+                    Timber.d("Error message: ${response.message()}")
+                    _error.value = response.message()
+                }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Timber.d("Error message: ${e.message}")
+                _error.value = e.message
             }
 
         }
