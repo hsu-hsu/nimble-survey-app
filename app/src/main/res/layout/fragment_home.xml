@@ -57,7 +57,7 @@
             android:text="@{homeViewModel.todayDate}"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/today"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Today"
@@ -68,6 +68,15 @@
             app:layout_constraintTop_toBottomOf="@+id/today_text"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/img"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/today"/>
 
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
             android:id="@+id/dots_indicator"
@@ -106,10 +115,10 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/continue_fab"
-            app:layout_constraintTop_toTopOf="@+id/continue_fab"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="36dp"
             android:layout_marginStart="24dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -118,10 +127,9 @@
             android:layout_height="wrap_content"
             app:backgroundTint="@color/white"
             android:src="@drawable/baseline_arrow_forward"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_text"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="36dp"
             android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
