@@ -1,8 +1,5 @@
 package com.nimble.android.features.login
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +10,8 @@ import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.TokenRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -35,6 +34,9 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     val error: LiveData<String>
         get() = _error
 
+    lateinit var username: String
+    lateinit var password: String
+
 
     fun onLoginButtonClick() {
         _showLoading.value = true
@@ -44,14 +46,14 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     private fun getAuthToken() {
         viewModelScope.launch {
             try {
-                val response = repository.getAuthToken(TokenPayload("password", "hsuyethin@gmail.com",
-                    "hsuyeethin", BuildConfig.client_id, BuildConfig.client_secret))
+                  val response = repository.getAuthToken(TokenPayload("password", username,
+                    password, BuildConfig.client_id, BuildConfig.client_secret))
                 if(response.isSuccessful) {
                     _authToken.value = response.body()
                     _navigateToHomeFragment.value = _authToken.value
                 }else {
                     Timber.d("Error message: ${response.message()}")
-                    _error.value = response.message()
+                    parseApiErrorBody(response)
                 }
             } catch (e: Exception) {
                 Timber.d("Error message: ${e.message}")
@@ -60,8 +62,20 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
         }
     }
 
+    private fun parseApiErrorBody(errorResponse: Response<TokenResponse>) {
+        var json =
+            errorResponse.errorBody()?.string()?.let { JSONObject(it) }
+        var errors = json?.getJSONArray("errors")
+        _error.value = errors?.getJSONObject(0)?.getString("detail")
+    }
+
     fun onHomeFragmentNavigate() {
         _navigateToHomeFragment.value = null
         _showLoading.value = false
+    }
+
+    fun getUsernameAndPassword(username: String, password: String) {
+        this.username = username
+        this.password = password
     }
 }

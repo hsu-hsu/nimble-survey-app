@@ -41,6 +41,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         viewModel.showLoading.observe(viewLifecycleOwner) {
+            viewModel.getUsernameAndPassword(binding.emailEdit.text.toString(),
+                binding.passwordEdit.text.toString())
             if(it == true) {
                 binding.loadingIndicator.visibility = View.VISIBLE
             } else {
