@@ -1,6 +1,7 @@
 package com.nimble.android.features.home
 
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,8 +14,11 @@ import com.nimble.android.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repository: SurveyRepository): ViewModel() {
 
@@ -35,6 +39,18 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
         get() = _error
 
     private var currentPage = Constants.PAGE
+    lateinit var todayDate: String
+
+    init {
+        getTodayDateAndFormat()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getTodayDateAndFormat() {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d")
+        todayDate = current.format(formatter)
+    }
 
     fun fetchSurveysList() {
         viewModelScope.launch {

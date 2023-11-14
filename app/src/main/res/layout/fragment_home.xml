@@ -39,7 +39,35 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             tools:listitem="@layout/surveys_card_item"
-            tools:visibility="visible"/>
+            tools:visibility="visible">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <TextView
+            android:id="@+id/today_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@{homeViewModel.todayDate}"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/today_text"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"/>
 
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
             android:id="@+id/dots_indicator"
@@ -69,7 +97,7 @@
             app:layout_constraintBottom_toTopOf="@+id/detail_text"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
             android:layout_marginBottom="24dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="24dp"/>
 
         <TextView
             android:id="@+id/detail_text"
@@ -82,7 +110,7 @@
             app:layout_constraintTop_toTopOf="@+id/continue_fab"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="24dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/continue_fab"
