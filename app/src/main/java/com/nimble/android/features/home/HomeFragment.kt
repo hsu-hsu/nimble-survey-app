@@ -40,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.titleText.text = survey.attributes.title
                 binding.detailText.text = survey.attributes.description
 
-                if(position == adapter.currentList.size - 1) {
+                if(position == adapter.currentList.size - 1 && !viewModel.isLastPage()) {
                     displaySnackBarForLoadMoreAction(position)
                 }
             }

@@ -56,4 +56,8 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
         currentPage += 1
         fetchSurveysList()
     }
+
+    fun isLastPage(): Boolean {
+        return currentPage == _surveys.value?.meta?.pages
+    }
 }
