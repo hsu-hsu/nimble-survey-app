@@ -14,8 +14,8 @@ interface SurveysApiService {
 
     @Protected
     @GET(Constants.SURVEY_LIST_PATH)
-    suspend fun getSurveysList(@Query("number") page: Int,
-                               @Query("size") size: Int) : SurveysResponse
+    suspend fun getSurveysList(@Query("page[number]", encoded = true) page: Int,
+                               @Query("page[size]", encoded = true) size: Int) : SurveysResponse
 
     @POST(Constants.TOKEN_PATH)
     suspend fun loginUser(@Body payload: TokenPayload): TokenResponse

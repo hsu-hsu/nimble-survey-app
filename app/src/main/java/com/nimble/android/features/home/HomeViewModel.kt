@@ -29,10 +29,12 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
     val navigateToDetailFragment
         get() = _navigateToDetailFragment
 
+    private var currentPage = Constants.PAGE
+
     fun fetchSurveysList() {
         viewModelScope.launch {
             try {
-                _surveys.value = repository.getSurveysList(Constants.PAGE, Constants.SIZE)
+                _surveys.value = repository.getSurveysList(currentPage, Constants.SIZE)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -47,5 +49,11 @@ class HomeViewModel @Inject constructor(private val repository: SurveyRepository
     fun onDetailFragmentNavigate() {
         _navigateToDetailFragment.value = null
         _surveys.value = null
+        currentPage = 1
+    }
+
+    fun loadNextPage() {
+        currentPage += 1
+        fetchSurveysList()
     }
 }

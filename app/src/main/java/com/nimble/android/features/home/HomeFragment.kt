@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             R.string.ask_to_load_more_survey,
             Snackbar.LENGTH_INDEFINITE
         ).setAction(R.string.load_more){
-
+            viewModel.loadNextPage()
         }
             .show()
 
