@@ -4,4 +4,7 @@
     <string name="enter_your_password">Password</string>
     <string name="Login">Log in</string>
     <string name="hello_detail_fragment">This is survey detail fragment.</string>
+
+    <string name="ask_to_load_more_survey">Click Load More button to view more surveys</string>
+    <string name="load_more">Load More</string>
 </resources>
