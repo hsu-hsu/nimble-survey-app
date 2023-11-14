@@ -51,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         Snackbar.make(
             binding.root,
             R.string.ask_to_load_more_survey,
-            Snackbar.LENGTH_INDEFINITE
+            Snackbar.LENGTH_LONG
         ).setAction(R.string.load_more){
             viewModel.loadNextPage()
         }
