@@ -4,6 +4,7 @@ import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.survey.SurveysResponse
 import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.utils.Constants
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -15,8 +16,8 @@ interface SurveysApiService {
     @Protected
     @GET(Constants.SURVEY_LIST_PATH)
     suspend fun getSurveysList(@Query("page[number]", encoded = true) page: Int,
-                               @Query("page[size]", encoded = true) size: Int) : SurveysResponse
+                               @Query("page[size]", encoded = true) size: Int) : Response<SurveysResponse>
 
     @POST(Constants.TOKEN_PATH)
-    suspend fun loginUser(@Body payload: TokenPayload): TokenResponse
+    suspend fun loginUser(@Body payload: TokenPayload): Response<TokenResponse>
 }

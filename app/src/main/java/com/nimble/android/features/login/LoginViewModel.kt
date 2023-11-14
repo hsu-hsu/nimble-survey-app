@@ -13,6 +13,7 @@ import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.repository.TokenRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,6 +31,10 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     val showLoading
         get() = _showLoading
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
 
     fun onLoginButtonClick() {
         _showLoading.value = true
@@ -39,11 +44,18 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     private fun getAuthToken() {
         viewModelScope.launch {
             try {
-                _authToken.value = repository.getAuthToken(TokenPayload("password", "hsuyethin@gmail.com",
+                val response = repository.getAuthToken(TokenPayload("password", "hsuyethin@gmail.com",
                     "hsuyeethin", BuildConfig.client_id, BuildConfig.client_secret))
-                _navigateToHomeFragment.value = _authToken.value
+                if(response.isSuccessful) {
+                    _authToken.value = response.body()
+                    _navigateToHomeFragment.value = _authToken.value
+                }else {
+                    Timber.d("Error message: ${response.message()}")
+                    _error.value = response.message()
+                }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Timber.d("Error message: ${e.message}")
+                _error.value = e.message
             }
         }
     }

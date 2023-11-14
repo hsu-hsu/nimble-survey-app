@@ -3,6 +3,7 @@ package com.nimble.android.features.login
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nimble.android.R
@@ -45,6 +46,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             } else {
                 binding.loadingIndicator.visibility = View.GONE
             }
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+           errorMessage?.let {
+               binding.loadingIndicator.visibility = View.GONE
+               Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+           }
         }
     }
 }

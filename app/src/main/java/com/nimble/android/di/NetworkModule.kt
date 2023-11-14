@@ -3,6 +3,7 @@ package com.nimble.android.di
 import com.nimble.android.api.SurveysApiService
 import com.nimble.android.api.interceptors.AuthInterceptor
 import com.nimble.android.api.interceptors.LoggingInterceptor
+import com.nimble.android.api.interceptors.NetworkStatusInterceptor
 import com.nimble.android.utils.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -23,8 +24,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideWebService(authInterceptor: AuthInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor,): SurveysApiService {
+    fun provideWebService(authInterceptor: AuthInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor, networkStatusInterceptor: NetworkStatusInterceptor): SurveysApiService {
         val client = OkHttpClient.Builder()
+            .addInterceptor(networkStatusInterceptor)
             .addInterceptor(authInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()

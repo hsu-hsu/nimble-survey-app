@@ -19,6 +19,4 @@ class SessionManager {
 
     fun getRefreshToken(): String? = AppSharedPreferences.getRefreshToken()
 
-
-    // Other session management methods
 }
