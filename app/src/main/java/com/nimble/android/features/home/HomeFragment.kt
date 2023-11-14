@@ -1,9 +1,11 @@
 package com.nimble.android.features.home
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -13,6 +15,7 @@ import com.nimble.android.databinding.FragmentHomeBinding
 import com.nimble.android.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 
+@RequiresApi(Build.VERSION_CODES.O)
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -34,6 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.onSurveyItemClick(survey)
         })
         binding.homePager.adapter = adapter
+
         binding.dotsIndicator.attachTo(binding.homePager)
         binding.homePager.registerOnPageChangeCallback( object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -74,6 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.continueFab.visibility = View.VISIBLE
                 binding.dotsIndicator.visibility = View.VISIBLE
                 binding.shimmerLayout.visibility = View.GONE
+                binding.profileImage.visibility = View.VISIBLE
             }
 
         }
