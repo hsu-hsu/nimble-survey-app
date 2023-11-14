@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.google.android.material.snackbar.Snackbar
 import com.nimble.android.R
 import com.nimble.android.databinding.FragmentHomeBinding
 import com.nimble.android.utils.autoCleared
@@ -38,8 +39,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 val survey = adapter.currentList[position]
                 binding.titleText.text = survey.attributes.title
                 binding.detailText.text = survey.attributes.description
+
+                if(position == adapter.currentList.size - 1 && !viewModel.isLastPage()) {
+                    displaySnackBarForLoadMoreAction(position)
+                }
             }
         })
+    }
+
+    private fun displaySnackBarForLoadMoreAction(position: Int) {
+        Snackbar.make(
+            binding.root,
+            R.string.ask_to_load_more_survey,
+            Snackbar.LENGTH_LONG
+        ).setAction(R.string.load_more){
+            viewModel.loadNextPage()
+        }
+            .show()
+
     }
 
     private fun initializeViewModel() {

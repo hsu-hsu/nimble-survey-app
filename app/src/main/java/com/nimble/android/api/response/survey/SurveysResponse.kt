@@ -5,4 +5,5 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SurveysResponse(@Json(name = "data") val data: List<Survey>) : Parcelable
+data class SurveysResponse(@Json(name = "data") val data: List<Survey>,
+                           @Json(name = "meta") val meta: SurveyMeta) : Parcelable
