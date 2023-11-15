@@ -1,8 +1,10 @@
 package com.nimble.android.utils
 
+import com.nimble.android.BuildConfig
+
 object Constants {
 
-    const val BASE_URL = "https://survey-api.nimblehq.co/api/v1/"
+    var BASE_URL = if(BuildConfig.PROD) "https://survey-api.nimblehq.co/api/v1/" else "https://nimble-survey-web-staging.herokuapp.com/api/v1/"
     const val TOKEN_PATH = "oauth/token"
     const val SURVEY_LIST_PATH = "surveys"
     const val REFRESH_TOKEN_PATH = "https://survey-api.nimblehq.co/api/v1/oauth/token"

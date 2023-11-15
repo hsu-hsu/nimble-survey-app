@@ -33,14 +33,39 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
+        getByName("debug") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
     }
+
+    flavorDimensions += "default"
+
+    productFlavors {
+        create("staging") {
+            applicationId = "com.nimble.android.staging"
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            buildConfigField("boolean","PROD","false")
+        }
+        create("production") {
+            applicationId = "com.nimble.android.production"
+            applicationIdSuffix = ".prod"
+            versionNameSuffix = "-prod"
+            buildConfigField("boolean","PROD","true")
+        }
+    }
+
     buildFeatures {
         dataBinding = true
         buildConfig = true
