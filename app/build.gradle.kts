@@ -54,9 +54,7 @@ android {
     productFlavors {
         create("staging") {
             dimension = "mode"
-            applicationIdSuffix = ".staging"
             versionNameSuffix = "-staging"
-            buildConfigField("boolean","PROD","false")
             buildConfigField(
                 "String",
                 "BASE_URL",
@@ -70,7 +68,6 @@ android {
         }
         create("production") {
             dimension = "mode"
-            buildConfigField("boolean","PROD","true")
             buildConfigField(
                 "String",
                 "BASE_URL",
