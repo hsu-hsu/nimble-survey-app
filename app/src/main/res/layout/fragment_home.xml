@@ -39,23 +39,62 @@
             android:layout_height="match_parent"
             android:visibility="gone"
             tools:listitem="@layout/surveys_card_item"
-            tools:visibility="visible"/>
+            tools:visibility="visible">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <TextView
+            android:id="@+id/today_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@{homeViewModel.todayDate}"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/today_text"
+            android:layout_marginStart="24dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/home_avatar"
+            android:visibility="gone"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/today"/>
 
         <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
             android:id="@+id/dots_indicator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:dotsColor="@color/hint_text_color"
-            app:selectedDotColor="@color/edittext_bg_color"
             app:progressMode="true"
-            app:dotsCornerRadius="6dp"
-            app:dotsSize="12dp"
+            app:dotsColor="@color/white"
+            app:dotsStrokeColor="@color/hint_text_color"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="8dp"
+            app:dotsStrokeWidth="4dp"
             app:dotsSpacing="4dp"
             app:dotsWidthFactor="2.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/title_text"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="-2dp"
             android:visibility="gone"/>
 
         <TextView
@@ -69,7 +108,7 @@
             app:layout_constraintBottom_toTopOf="@+id/detail_text"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
             android:layout_marginBottom="24dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="24dp"/>
 
         <TextView
             android:id="@+id/detail_text"
@@ -78,11 +117,11 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/continue_fab"
-            app:layout_constraintTop_toTopOf="@+id/continue_fab"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/continue_fab"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginBottom="36dp"
+            android:layout_marginStart="24dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/continue_fab"
@@ -90,10 +129,9 @@
             android:layout_height="wrap_content"
             app:backgroundTint="@color/white"
             android:src="@drawable/baseline_arrow_forward"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_text"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="36dp"
             android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -134,6 +134,9 @@ dependencies {
     //timber for log
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+    //circle image library
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
     //test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
