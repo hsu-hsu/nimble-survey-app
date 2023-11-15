@@ -1,5 +1,6 @@
 package com.nimble.android.di
 
+import com.nimble.android.BuildConfig
 import com.nimble.android.api.SurveysApiService
 import com.nimble.android.api.interceptors.AuthInterceptor
 import com.nimble.android.api.interceptors.LoggingInterceptor
@@ -38,7 +39,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(Constants.getEndPoint())
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .build()
             .create(SurveysApiService::class.java)

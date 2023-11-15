@@ -49,20 +49,38 @@ android {
         }
     }
 
-    flavorDimensions += "default"
+    flavorDimensions += "mode"
 
     productFlavors {
         create("staging") {
-            applicationId = "com.nimble.android.staging"
+            dimension = "mode"
             applicationIdSuffix = ".staging"
             versionNameSuffix = "-staging"
             buildConfigField("boolean","PROD","false")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                project.properties["staging_base_url"] as String,
+            )
+            buildConfigField(
+                "String",
+                "REFRESH_TOKEN_URL",
+                project.properties["staging_refresh_token_url"] as String,
+            )
         }
         create("production") {
-            applicationId = "com.nimble.android.production"
-            applicationIdSuffix = ".prod"
-            versionNameSuffix = "-prod"
+            dimension = "mode"
             buildConfigField("boolean","PROD","true")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                project.properties["production_base_url"] as String,
+            )
+            buildConfigField(
+                "String",
+                "REFRESH_TOKEN_URL",
+                project.properties["production_refresh_token_url"] as String,
+            )
         }
     }
 

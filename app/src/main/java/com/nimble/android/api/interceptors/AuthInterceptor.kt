@@ -87,7 +87,7 @@ private fun Interceptor.Chain.refreshToken(): Response {
         request()
             .newBuilder()
             .post(requestBody)
-            .url(Constants.REFRESH_TOKEN_PATH)
+            .url(BuildConfig.REFRESH_TOKEN_URL)
             .build()
 
     return proceedDeletingTokenIfUnauthorized(refreshToken)

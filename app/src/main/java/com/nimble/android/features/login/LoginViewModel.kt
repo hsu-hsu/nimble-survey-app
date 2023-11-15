@@ -63,9 +63,9 @@ class LoginViewModel @Inject constructor(private val repository: TokenRepository
     }
 
     private fun parseApiErrorBody(errorResponse: Response<TokenResponse>) {
-        var json =
+        val json =
             errorResponse.errorBody()?.string()?.let { JSONObject(it) }
-        var errors = json?.getJSONArray("errors")
+        val errors = json?.getJSONArray("errors")
         _error.value = errors?.getJSONObject(0)?.getString("detail")
     }
 
