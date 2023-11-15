@@ -4,13 +4,15 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.nimble.android.api.response.survey.Survey
 
-@BindingAdapter("backgroundImage")
-fun bindBackgroundImage(imageView: ImageView, imageUrl: String) {
-            Glide.with(imageView.context)
-                .load(imageUrl)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView)
+@BindingAdapter(
+    value = ["backgroundImage", "imageInHd"],
+    requireAll = false)
+fun bindBackgroundImage(imageView: ImageView, imageUrl: String, imageInHd: Boolean = true) {
+    val newImageUrl = if(imageInHd ) imageUrl+ "l" else imageUrl
+    Glide.with(imageView.context)
+        .load(newImageUrl)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(imageView)
 
 }
