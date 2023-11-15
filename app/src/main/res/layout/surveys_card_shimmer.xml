@@ -3,9 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:background="@color/shimmerColor"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin">
+
+            <TextView
+                android:id="@+id/text1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:background="@color/shimmerColor"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:src="@color/shimmerColor"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,32 +56,53 @@
             android:id="@+id/title"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="32sp"
+            android:textSize="18sp"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:background="@color/shimmerColor"/>
+            android:background="@color/shimmerColor"
+            android:layout_marginBottom="@dimen/small_margin"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:orientation="horizontal">
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="4"
+            android:background="@color/shimmerColor"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"/>
 
-            <TextView
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:layout_weight="4"
-                android:background="@color/shimmerColor"
-                android:layout_marginRight="@dimen/small_margin"/>
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="4"
+            android:background="@color/shimmerColor"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"/>
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/shimmerColor"/>
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="4"
+            android:background="@color/shimmerColor"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"/>
 
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_weight="4"
+            android:background="@color/shimmerColor"
+            android:layout_marginRight="@dimen/small_margin"/>
 
-        </LinearLayout>
 
 
     </LinearLayout>
