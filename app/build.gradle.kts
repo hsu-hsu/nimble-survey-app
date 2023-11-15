@@ -33,14 +33,54 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
+        getByName("debug") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
     }
+
+    flavorDimensions += "mode"
+
+    productFlavors {
+        create("staging") {
+            dimension = "mode"
+            versionNameSuffix = "-staging"
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                project.properties["staging_base_url"] as String,
+            )
+            buildConfigField(
+                "String",
+                "REFRESH_TOKEN_URL",
+                project.properties["staging_refresh_token_url"] as String,
+            )
+        }
+        create("production") {
+            dimension = "mode"
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                project.properties["production_base_url"] as String,
+            )
+            buildConfigField(
+                "String",
+                "REFRESH_TOKEN_URL",
+                project.properties["production_refresh_token_url"] as String,
+            )
+        }
+    }
+
     buildFeatures {
         dataBinding = true
         buildConfig = true

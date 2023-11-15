@@ -1,7 +1,6 @@
 package com.nimble.android.repository
 
 import com.nimble.android.api.SurveysApiService
-import com.nimble.android.api.payloads.RefreshTokenPayload
 import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.token.TokenResponse
 import com.nimble.android.preference.AppSharedPreferences
@@ -20,7 +19,7 @@ class TokenRepository @Inject constructor(private val webservice: SurveysApiServ
             token = webservice.loginUser(payload)
         }
         if(token.isSuccessful) {
-            var responseToken = token.body()!!
+            val responseToken = token.body()!!
             AppSharedPreferences.setAccessToken(responseToken.data.attributes.accessToken)
             AppSharedPreferences.setRefreshToken(responseToken.data.attributes.refreshToken)
             AppSharedPreferences.setExpireIn(System.currentTimeMillis() + responseToken.data.attributes.expireIn * 1000)
