@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:backgroundImage="@{survey.attributes.coverImageUrl}"/>
+            app:backgroundImage="@{survey.attributes.coverImageUrl}"
+            app:imageInHd="@{true}"/>
 
         <View
             android:layout_width="match_parent"
