@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.home.HomeFragment">
+        tools:context=".features.home.HomeFragment"
+        android:background="@color/black">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_layout"
@@ -53,6 +54,7 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -64,6 +66,7 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="32sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/today_text"
             android:layout_marginStart="24dp"/>
