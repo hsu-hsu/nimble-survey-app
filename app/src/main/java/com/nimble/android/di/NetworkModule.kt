@@ -38,7 +38,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.getEndPoint())
             .client(client)
             .build()
             .create(SurveysApiService::class.java)
