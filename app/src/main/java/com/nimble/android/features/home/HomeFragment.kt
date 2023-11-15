@@ -74,11 +74,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             surveys?.let {
                 binding.shimmerLayout.stopShimmer()
                 adapter.submitList(surveys.data)
-                binding.homePager.visibility = View.VISIBLE
-                binding.continueFab.visibility = View.VISIBLE
-                binding.dotsIndicator.visibility = View.VISIBLE
-                binding.shimmerLayout.visibility = View.GONE
-                binding.profileImage.visibility = View.VISIBLE
+                changeVisibilityOfView()
             }
 
         }
@@ -100,6 +96,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.onDetailFragmentNavigate()
             }
         }
+    }
+
+    private fun changeVisibilityOfView() {
+        binding.homePager.visibility = View.VISIBLE
+        binding.continueFab.visibility = View.VISIBLE
+        binding.dotsIndicator.visibility = View.VISIBLE
+        binding.shimmerLayout.visibility = View.GONE
+        binding.profileImage.visibility = View.VISIBLE
+        binding.today.visibility = View.VISIBLE
+        binding.todayText.visibility = View.VISIBLE
     }
 
     private fun fetchData() {
