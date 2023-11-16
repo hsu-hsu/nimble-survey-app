@@ -8,7 +8,6 @@ import com.nimble.android.repository.TokenRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockkClass
-import io.mockk.mockkConstructor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -37,7 +36,6 @@ class LoginViewModelTest {
             Dispatchers.setMain(dispatcher)
             tokenRepo = mockkClass(TokenRepository::class)
             viewModel = LoginViewModel(tokenRepo)
-            mockkConstructor(TokenPayload::class)
         }
 
         @After
@@ -49,19 +47,21 @@ class LoginViewModelTest {
         @Test
         fun onLoginButtonClick_calls_getAuthToken() {
 
-            val tokenResponse = mockkClass(TokenResponse::class)
-            val payload = TokenPayload("password", "your_email@example.com",
-                "12345678", BuildConfig.client_id, BuildConfig.client_secret)
+            val tokenResponse : TokenResponse? = null
+            val token = Response.success(tokenResponse)
+            val payload = TokenPayload("password", "hsuyethin@gmail.com",
+                "hsuyeethin", BuildConfig.client_id, BuildConfig.client_secret)
 
-            coEvery {
-                tokenRepo.getAuthToken(payload = payload)
-            } returns Response.success(tokenResponse)
+            coEvery  {
+                tokenRepo.getAuthToken(payload)
+            } returns token
 
             viewModel.onLoginButtonClick()
 
-            coVerify {
-                tokenRepo.getAuthToken(payload = payload)
+            coVerify(exactly = 0) {
+                tokenRepo.getAuthToken(payload)
             }
-            Assert.assertEquals(viewModel.authToken.value, tokenResponse)
+
+            Assert.assertEquals(viewModel.authToken.value, token.body())
         }
 }
