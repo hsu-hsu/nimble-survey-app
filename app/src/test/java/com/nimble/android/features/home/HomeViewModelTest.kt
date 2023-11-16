@@ -19,13 +19,14 @@ import org.junit.Rule
 
 import org.junit.Test
 import org.junit.rules.TestRule
+import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest {
 
-    private val dispatcher: TestDispatcher = TestCoroutineDispatcher()
     private lateinit var surveyRepo : SurveyRepository
     private lateinit var viewModel: HomeViewModel
+    private val dispatcher: TestDispatcher = TestCoroutineDispatcher()
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
@@ -42,10 +43,10 @@ class HomeViewModelTest {
     }
     @Test
     fun when_home_screen_start_should_fetch_surveylist() {
-        var surveyResponse = mockkClass(SurveysResponse::class)
+        val surveyResponse = mockkClass(SurveysResponse::class)
         coEvery {
             surveyRepo.getSurveysList(1,5)
-        } returns surveyResponse
+        } returns Response.success(surveyResponse)
 
         viewModel.fetchSurveysList()
 
