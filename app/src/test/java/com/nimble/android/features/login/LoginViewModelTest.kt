@@ -1,21 +1,14 @@
 package com.nimble.android.features.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.nimble.android.BuildConfig
 import com.nimble.android.api.payloads.TokenPayload
 import com.nimble.android.api.response.token.TokenResponse
-import com.nimble.android.preference.AppSharedPreferences
 import com.nimble.android.repository.TokenRepository
-import com.nimble.android.utils.SessionManager
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.impl.platform.Disposable
-import io.mockk.mockk
 import io.mockk.mockkClass
 import io.mockk.mockkConstructor
-import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -28,6 +21,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LoginViewModelTest {
@@ -43,6 +37,7 @@ class LoginViewModelTest {
             Dispatchers.setMain(dispatcher)
             tokenRepo = mockkClass(TokenRepository::class)
             viewModel = LoginViewModel(tokenRepo)
+            mockkConstructor(TokenPayload::class)
         }
 
         @After
@@ -50,24 +45,23 @@ class LoginViewModelTest {
             Dispatchers.resetMain()
         }
 
+
         @Test
         fun onLoginButtonClick_calls_getAuthToken() {
 
-            var loginResponse = mockkClass(TokenResponse::class)
+            val tokenResponse = mockkClass(TokenResponse::class)
+            val payload = TokenPayload("password", "your_email@example.com",
+                "12345678", BuildConfig.client_id, BuildConfig.client_secret)
+
             coEvery {
-                tokenRepo.getAuthToken(TokenPayload("password", "your_email@example.com",
-                    "12345678", BuildConfig.client_id, BuildConfig.client_secret))
-            } returns loginResponse
+                tokenRepo.getAuthToken(payload = payload)
+            } returns Response.success(tokenResponse)
 
             viewModel.onLoginButtonClick()
 
             coVerify {
-                tokenRepo.getAuthToken(TokenPayload("password", "your_email@example.com",
-                    "12345678", BuildConfig.client_id, BuildConfig.client_secret))
+                tokenRepo.getAuthToken(payload = payload)
             }
-            Assert.assertEquals(viewModel.authToken.value, loginResponse)
-//            verify {
-//                AppSharedPreferences.setRefreshToken(loginResponse.data.attributes.refreshToken)
-//            }
+            Assert.assertEquals(viewModel.authToken.value, tokenResponse)
         }
 }
